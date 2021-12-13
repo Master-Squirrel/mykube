@@ -1,0 +1,9 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubedoom
+  namespace: kubedoom
+roleRef:
+  kind: ClusterRole
+  name: kubedoom-oper
+  apiGroup: rbac.authorization.k8s.io
