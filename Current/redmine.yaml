@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata: 
-        name: postgres
+        name: redmine
 spec:
         replicas: 1
         strategy:
@@ -11,34 +11,27 @@ spec:
             maxUnavailable: 1
         selector:
           matchLabels:
-            app: postgres
+            app: redmine
         template:
             metadata:
               labels:
-                app: postgres
+                app: redmine
             spec:
-              volumes:
-              - name: postgres-pv-storage
-                persistentVolumeClaim:
-                   claimName: p1 
               containers:
-                - name: postgres
-                  image: postgres:10.13
+                - name: redmine-pod
+                  image: redmine:4.1.1
                   ports: 
-                    - containerPort: 5432
-                      name: "postgres-server"
+                    - containerPort: 3000
+                      name: "redmine-server"
                   env:
-                  - name: POSTGRES_USER
+                  - name: REDMINE_DB_POSTGRES
+                    value: database
+                  - name: REDMINE_DB_USERNAME 
                     value: testuser
-                  - name: POSTGRES_PASSWORD
+                  - name: REDMINE_DB_PASSWORD 
                     valueFrom: 
                       secretKeyRef:
                         name: postgres-secret-config
                         key: password
-                  - name: POSTGRES_DB
+                  - name: REDMINE_DB_DATABASE
                     value: testdatabase
-                  - name: PGDATA
-                    value: "/var/lib/postgresql/data/pgdata"
-                  volumeMounts:
-                    - mountPath: /var/lib/postgresql/data/
-                      name: postgres-pv-storage
