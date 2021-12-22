@@ -14,4 +14,4 @@ spec:
           service:
             name: redmine-service
             port:
-              number: 3000
+              number: 8088

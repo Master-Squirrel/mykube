@@ -35,3 +35,5 @@ spec:
                         key: password
                   - name: REDMINE_DB_DATABASE
                     value: testdatabase
+                  - name: REDMINE_SECRET_KEY_BASE
+                    value: supersecretkey

@@ -26,7 +26,8 @@ spec:
                   image: postgres:10.13
                   ports: 
                     - containerPort: 5432
-                      name: "postgres-server"
+                      protocol: TCP
+                      name: postgres-server
                   env:
                   - name: POSTGRES_USER
                     value: testuser
