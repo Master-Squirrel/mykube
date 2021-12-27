@@ -18,11 +18,11 @@ spec:
                 app: redmine
             spec:
               containers:
-                - name: redmine-pod
+                - name: redmine
                   image: redmine:4.1.1
                   ports: 
                     - containerPort: 3000
-                      name: "redmine-server"
+                      name: redmine-server
                   env:
                   - name: REDMINE_DB_POSTGRES
                     value: database

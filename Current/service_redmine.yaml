@@ -6,6 +6,8 @@ spec:
   selector:
     app: redmine
   ports:
-    - protocol: TCP
+    - name: redmine-port
+      protocol: TCP
       port: 3000
       targetPort: 3000
+  #type: LoadBalancer/Nodeport

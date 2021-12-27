@@ -7,17 +7,14 @@ metadata:
     cert-manager.io/cluster-issuer: "letsencrypt"
 spec:
   tls:
-    - hosts: 
-       - questbusters.ru
-      secretName: qb-ingress-tls
+    - hosts:
+      - questbusters.ru
+      secretName: questbusters
   rules:
     - host: questbusters.ru
       http:
         paths:
-        - path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: redmine-service
-              port:
-                number: 3000
+        - backend:
+            serviceName: redmine-service
+            servicePort: 3000
+          path: /

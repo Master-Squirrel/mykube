@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alb
+  annotations:
+    ingress.alb.yc.io/subnets: e9botiukohb6mgk3unge,e9b03qcmsnp52qun49jr 
+   # ingress.alb.yc.io/security-groups: <список идентификаторов групп безопасности>
+    ingress.alb.yc.io/external-ipv4-address: auto
+    ingress.alb.yc.io/group-name: ing-gr1
+spec:
+  tls:
+    - hosts:
+        - questbusters.ru
+      secretName: yc-certmgr-cert-id-fpq9l9isi603due2m923
+  rules:
+    - host: questbusters.ru
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: redmine-service
+                port:
+                  number: 3000
+
