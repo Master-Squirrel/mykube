@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+        name: 2-dec-pod
+spec: 
+        containers:
+        - image: prom/prometheus:v2.19.2
+          name: promet
+          ports: 
+          - containerPort: 9010
